@@ -3,7 +3,7 @@ from src.rag.loader import load_douements
 from src.rag.chunks import chunk_documents
 from src.rag.embedding import get_embedding_model
 from src.rag.vector_store import build_db, load_db
-# from src.rag.retriever import get_advanced_retriever
+from src.rag.retriever import get_advanced_retriever
 
 # from src.rag import load_db,build_db,get_embedding_model,chunk_documents,load_douements
 
@@ -63,7 +63,28 @@ db = load_db(embedding)
 
 print("Vector Database Loaded Successfully")
 
+retriever=get_advanced_retriever(db=db)
+question="Who is sudais azlan ?"
+# responce=retiver.invoke(question)
 
+
+
+docs = retriever.invoke(question)
+
+print(f"\nRetrieved Chunks : {len(docs)}\n")
+
+for index, doc in enumerate(docs, start=1):
+
+    print("=" * 80)
+    print(f"Chunk {index}")
+    print("=" * 80)
+
+    print(doc.page_content)
+
+    print("\nMetadata:")
+    print(doc.metadata)
+
+    print()
 # /rested_douemnents=get_advanced_retriever(db=db)
 
 
