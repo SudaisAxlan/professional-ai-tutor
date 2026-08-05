@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual Environment
+.venv/
+venv/
+
+# Environment
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Local Vector Database
+storage/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
