@@ -1,11 +1,18 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+
+# ==========================================================
+# Load Environment Variables
+# ==========================================================
+
+load_dotenv()
 
 # ==========================================================
 # Project
 # ==========================================================
 
 PROJECT_NAME = "Professional AI Tutor"
-
 PROJECT_VERSION = "0.1.0"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -17,13 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_PATH = BASE_DIR / "data"
 
 PDF_PATH = DATA_PATH / "pdf"
-
 BOOK_PATH = DATA_PATH / "books"
-
 NOTES_PATH = DATA_PATH / "notes"
 
 # ==========================================================
-# Local Storage
+# Storage
 # ==========================================================
 
 STORAGE_PATH = BASE_DIR / "storage"
@@ -36,7 +41,7 @@ MEMORY_DB_PATH = STORAGE_PATH / "memory.db"
 # Local LLM (Ollama)
 # ==========================================================
 
-OLLAMA_MODEL = "llama3.2:latest"
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:latest")
 
 TEMPERATURE = 0
 
@@ -54,7 +59,10 @@ SEED = 42
 # Embedding Model
 # ==========================================================
 
-EMBEDDING_MODEL = "BAAI/bge-m3"
+EMBEDDING_MODEL = os.getenv(
+    "EMBEDDING_MODEL",
+    "BAAI/bge-m3"
+)
 
 # ==========================================================
 # Text Splitter (RAG)
@@ -72,6 +80,7 @@ TOP_K_DOCUMENTS = 5
 
 SEARCH_TYPE = "similarity"
 
+# Available:
 # similarity
 # mmr
 
@@ -79,9 +88,15 @@ SEARCH_TYPE = "similarity"
 # Qdrant Cloud
 # ==========================================================
 
-QDRANT_COLLECTION = "knowledge_base"
+QDRANT_URL = os.getenv("QDRANT_URL")
 
-# URL and API Key will come from .env
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY")
+
+QDRANT_COLLECTION = os.getenv(
+    "QDRANT_COLLECTION",
+    "knowledge_base"
+)
+
 
 # ==========================================================
 # Memory
