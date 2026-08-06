@@ -130,3 +130,6 @@ SUPPORTED_LEVELS = [
 ]
 
 DEFAULT_LEVEL = "Beginner"
+
+
+BUILD_DATABASE = False
